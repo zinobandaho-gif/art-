@@ -83,9 +83,11 @@ livePulse: {
 <!-- AOS Animation Library -->
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-<!-- Firebase SDKs for Google Auth -->
+<!-- Firebase SDKs (Auth, Firestore, Analytics) -->
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics-compat.js"></script>
 
 <!-- Color Thief for dynamic colors -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
@@ -1091,7 +1093,7 @@ Publish to Gallery
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
 // ============================================================
-// FIREBASE CONFIG (Using your project's credentials)
+// FIREBASE CONFIG & INITIALIZATION
 // ============================================================
 const firebaseConfig = {
   apiKey: "AIzaSyB7976TzrbKK_vh-lG-5oVTzPgNeXj0tFY",
@@ -1107,6 +1109,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const provider = new firebase.auth.GoogleAuthProvider();
+const db = firebase.firestore();       // قاعدة البيانات (Cloud Firestore)
+const analytics = firebase.analytics(); // تحليلات الموقع (Analytics)
 
 // ============================================================
 // AUTH STATE MANAGEMENT
@@ -1545,7 +1549,6 @@ a.artist.toLowerCase().includes(query.toLowerCase()) ||
 a.category.toLowerCase().includes(query.toLowerCase())
 );
 
-// Show results in traditional grid temporarily
 const grid = document.getElementById('traditional-grid');
 grid.innerHTML = '';
 if (filtered.length === 0) {
@@ -1639,7 +1642,6 @@ function openLiveAuction() {
 document.getElementById('liveOverlay').classList.add('open');
 document.body.style.overflow = 'hidden';
 
-// Load first artwork for auction
 const firstArt = artworks[0];
 if (firstArt) {
 currentBidPrice = firstArt.price;
@@ -1658,7 +1660,6 @@ document.getElementById('liveAuctionItem').innerHTML = `
 `;
 }
 
-// Start live timer
 startLiveTimer();
 }
 
@@ -1700,7 +1701,6 @@ time: new Date().toLocaleTimeString()
 };
 liveBids.push(bid);
 
-// Update UI
 document.getElementById('liveAuctionItem').innerHTML = `
 <div class="flex gap-4 items-start">
 <img src="${artworks[0].image}" class="w-32 h-32 object-cover rounded-lg" alt="${artworks[0].title}">
@@ -1767,7 +1767,6 @@ document.getElementById('cartModal').classList.toggle('hidden');
 document.getElementById('cartModal').classList.toggle('flex');
 }
 
-// Close modals on outside click
 document.querySelectorAll('.fixed').forEach(modal => {
 modal.addEventListener('click', function(e) {
 if (e.target === this) {
