@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="dark">
 <head>
@@ -14,15 +15,15 @@ theme: {
 extend: {
 colors: {
 luxury: {
-gold: '#C9A84C',
-goldLight: '#E8D5A3',
-goldDark: '#A8873A',
-dark: '#0D0D0D',
-velvet: '#1A1A1A',
-card: '#1A1A1A',
-border: '#2A2A2A',
-gray: '#8A8A8A',
-white: '#FAFAFA'
+gold: '#B7791F',
+goldLight: '#F3D9A4',
+goldDark: '#875417',
+dark: '#FFFDF8',
+velvet: '#F5EFE5',
+card: '#FFFFFF',
+border: '#E5D7C2',
+gray: '#6F665C',
+white: '#29241E'
 }
 },
 fontFamily: {
@@ -97,8 +98,8 @@ livePulse: {
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
 font-family: 'Plus Jakarta Sans', sans-serif;
-background: #0D0D0D;
-color: #FAFAFA;
+background: #FFFDF8;
+color: #29241E;
 overflow-x: hidden;
 transition: background 1s ease;
 }
@@ -259,6 +260,16 @@ animation: shimmer 4s linear infinite;
 }
 
 /* ===== HERO TEXT ANIMATION ===== */
+.particle {
+position: absolute;
+border-radius: 50%;
+pointer-events: none;
+}
+.hero-content {
+width: 100%;
+max-width: 72rem;
+margin: 0 auto;
+}
 .hero-title span {
 display: inline-block;
 animation: slideUp 0.8s ease-out forwards;
@@ -676,6 +687,33 @@ border: 1px solid rgba(201, 168, 76, 0.15);
 .live-card { padding: 20px; margin: 10px; }
 .user-profile .user-name { max-width: 50px; font-size: 0.65rem; }
 }
+
+/* ===== WARM LIGHT GALLERY THEME ===== */
+:root { --sage: #597C65; --sage-light: #E5EFE7; --sage-dark: #385442; }
+.dynamic-bg {
+background: radial-gradient(ellipse at 18% 12%, rgba(183, 121, 31, 0.14), transparent 42%),
+radial-gradient(ellipse at 82% 78%, rgba(89, 124, 101, 0.18), transparent 45%),
+#FFFDF8;
+}
+.glass { background: rgba(255, 253, 248, 0.88); border-color: rgba(135, 84, 23, 0.16); }
+.glass-light { background: rgba(255, 255, 255, 0.7); }
+.art-card, .testimonial-card, .live-card { background: #FFFFFF; border-color: #E5D7C2; box-shadow: 0 12px 30px rgba(84, 58, 25, 0.08); }
+.art-card:hover, .testimonial-card:hover, .live-card:hover { border-color: #B7791F; }
+.live-overlay { background: rgba(255, 253, 248, 0.92); }
+.toast { background: #FFFFFF; border-color: #B7791F; }
+.image-preview { background: #FFFDF8; }
+.image-preview:hover { background: #F5EFE5; }
+.particle { background: radial-gradient(circle, rgba(89, 124, 101, 0.16), transparent 68%); filter: blur(8px); }
+.hero-content > div:first-child { background: var(--sage-light); border-color: rgba(89, 124, 101, 0.35); }
+.hero-content > div:first-child .text-luxury-gold { color: var(--sage-dark) !important; }
+.category-header .icon { background: var(--sage-light); border-color: rgba(89, 124, 101, 0.3); color: var(--sage); }
+.artist-card:hover { border-color: var(--sage); box-shadow: 0 10px 25px rgba(89, 124, 101, 0.18); }
+.artist-card::after { background: conic-gradient(from 0deg, var(--sage), transparent, var(--sage)); }
+.text-white { color: #29241E !important; }
+.text-gray-400 { color: #6F665C !important; }
+.text-gray-500, .text-gray-600 { color: #887D70 !important; }
+.text-gray-300 { color: #51493F !important; }
+[class~="bg-black/70"] { background-color: rgba(41, 36, 30, 0.78) !important; }
 </style>
 </head>
 <body>
@@ -717,10 +755,10 @@ border: 1px solid rgba(201, 168, 76, 0.15);
 
 <!-- DESKTOP NAV -->
 <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-gray-400">
-<a href="#traditional" class="hover:text-luxury-gold transition-all relative group" data-key="navTraditional">Traditional</a>
-<a href="#digital" class="hover:text-luxury-gold transition-all relative group" data-key="navDigital">Digital</a>
-<a href="#artists" class="hover:text-luxury-gold transition-all relative group" data-key="navArtists">Artists</a>
-<a href="#auction" class="hover:text-luxury-gold transition-all relative group" data-key="navAuction">Auction</a>
+<a href="section-premium.html?section=traditional" class="hover:text-luxury-gold transition-all relative group" data-key="navTraditional">Traditional</a>
+<a href="section-premium.html?section=digital" class="hover:text-luxury-gold transition-all relative group" data-key="navDigital">Digital</a>
+<a href="section-premium.html?section=artists" class="hover:text-luxury-gold transition-all relative group" data-key="navArtists">Artists</a>
+<a href="auction-ultimate.html" class="hover:text-luxury-gold transition-all relative group" data-key="navAuction">Auction</a>
 </nav>
 
 <!-- ACTIONS -->
@@ -839,14 +877,14 @@ Close
 <div class="particle" style="width:200px;height:200px;bottom:100px;left:-80px;animation-delay:2s;"></div>
 <div class="particle" style="width:150px;height:150px;top:50%;right:10%;animation-delay:4s;"></div>
 
-<div class="max-w-6xl mx-auto px-4 text-center relative z-10">
+<div class="hero-content px-4 text-center z-10 flex flex-col items-center">
 <div class="inline-block px-4 py-2 rounded-full bg-luxury-gold/10 border border-luxury-gold/30 mb-6 animate-pulse-slow">
 <span class="text-luxury-gold text-xs uppercase tracking-[0.3em] font-semibold" data-key="heroBadge">
 <i class="fa-regular fa-gem ml-2"></i> Premium Art Platform
 </span>
 </div>
 
-<h1 class="hero-title text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-bold text-white leading-[1.1] mb-6">
+<h1 class="hero-title w-full text-center text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-bold text-white leading-[1.1] mb-6">
 <span data-key="heroTitle1">Where</span>
 <span class="text-luxury-gold" data-key="heroTitle2">Art</span>
 <span data-key="heroTitle3">Comes</span>
@@ -859,7 +897,7 @@ An exclusive platform featuring independent artists from around the world, where
 </p>
 
 <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-<a href="#traditional" class="w-full sm:w-auto px-10 py-4 bg-luxury-gold text-black font-bold rounded-full hover:bg-luxury-goldLight transition-all text-sm tracking-wider uppercase flex items-center gap-3 shadow-lg shadow-luxury-gold/20" data-key="heroBtn1">
+<a href="section-premium.html?section=traditional" class="w-full sm:w-auto px-10 py-4 bg-luxury-gold text-black font-bold rounded-full hover:bg-luxury-goldLight transition-all text-sm tracking-wider uppercase flex items-center gap-3 shadow-lg shadow-luxury-gold/20" data-key="heroBtn1">
 <i class="fa-solid fa-arrow-left"></i> Explore Gallery
 </a>
 <button onclick="openSellModal()" class="w-full sm:w-auto px-10 py-4 bg-transparent border-2 border-luxury-gold/50 text-luxury-gold font-bold rounded-full hover:bg-luxury-gold hover:text-black transition-all text-sm tracking-wider uppercase" data-key="heroBtn2">
@@ -976,10 +1014,10 @@ Join as Artist
 <div>
 <h4 class="text-white font-bold mb-4" data-key="footerQuick">Quick Links</h4>
 <ul class="space-y-2 text-sm text-gray-500">
-<li><a href="#traditional" class="hover:text-luxury-gold transition-colors" data-key="footerTraditional">Traditional</a></li>
-<li><a href="#digital" class="hover:text-luxury-gold transition-colors" data-key="footerDigital">Digital</a></li>
-<li><a href="#artists" class="hover:text-luxury-gold transition-colors" data-key="footerArtists">Artists</a></li>
-<li><a href="#auction" class="hover:text-luxury-gold transition-colors" data-key="footerAuction">Auction</a></li>
+<li><a href="section-premium.html?section=traditional" class="hover:text-luxury-gold transition-colors" data-key="footerTraditional">Traditional</a></li>
+<li><a href="section-premium.html?section=digital" class="hover:text-luxury-gold transition-colors" data-key="footerDigital">Digital</a></li>
+<li><a href="section-premium.html?section=artists" class="hover:text-luxury-gold transition-colors" data-key="footerArtists">Artists</a></li>
+<li><a href="auction-ultimate.html" class="hover:text-luxury-gold transition-colors" data-key="footerAuction">Auction</a></li>
 </ul>
 </div>
 <div>
